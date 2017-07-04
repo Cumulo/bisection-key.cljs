@@ -24,8 +24,9 @@
 (defn vec->str [xs] (->> xs (map (fn [x] (get int->char-map x))) (string/join "")))
 
 (defn bisect [ x y]
-  (if (= x y) (throw (js/Error "[bisection] keys are identical!")))
-  (if (pos? (compare x y)) (throw (js/Error. "[bisection] x > y")))
+  (assert (and (string? x) (string? y)) "[bitsect] arguments should be strings!")
+  (assert (not= x y) "[bisection] keys are identical!")
+  (assert (neg? (compare x y)) "[bisection] x > y")
   (let [xs (str->vec x), ys (str->vec y)] (vec->str (bisect-vec xs ys []))))
 
 (def max-id (vec->str [64]))

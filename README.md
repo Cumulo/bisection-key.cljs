@@ -7,7 +7,7 @@ bisection-key
 ### Usage
 
 ```edn
-[cirru/bisection-key "0.1.0"]
+[cirru/bisection-key "0.1.1"]
 ```
 
 [![Clojars Project](https://img.shields.io/clojars/v/cirru/bisection-key.svg)](https://clojars.org/cirru/bisection-key)
