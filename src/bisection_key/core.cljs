@@ -1,5 +1,5 @@
 
-(ns bisection-key.core (:require [clojure.string :as string]))
+(ns bisection-key.core (:require [clojure.string :as string] [clojure.set :as set]))
 
 (def dictionary
   (str "+-/" "0123456789" "ABCDEFGHIJKLMNOPQRSTUVWXYZ" "abcdefghijklmnopqrstuvwxyz"))
@@ -7,8 +7,7 @@
 (def int->char-map
   (->> (string/split dictionary "") (map-indexed (fn [idx char] [idx char])) (into {})))
 
-(def char->int-map
-  (->> (string/split dictionary "") (map-indexed (fn [idx char] [char idx])) (into {})))
+(def char->int-map (set/map-invert int->char-map))
 
 (defn str->vec [x]
   (->> (string/split x "") (map (fn [char] (get char->int-map char))) (into [])))

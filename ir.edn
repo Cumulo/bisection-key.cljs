@@ -71,7 +71,9 @@
          "schema" {:ns ["ns" "bisection-key.schema"],
                    :defs {"store" ["def" "store" ["{}" [":states" ["{}"]] [":data" "0"]]]},
                    :procs []},
-         "core" {:ns ["ns" "bisection-key.core" [":require" ["[]" "clojure.string" ":as" "string"]]],
+         "core" {:ns ["ns"
+                      "bisection-key.core"
+                      [":require" ["[]" "clojure.string" ":as" "string"] ["[]" "clojure.set" ":as" "set"]]],
                  :defs {"bisect" ["defn"
                                   "bisect"
                                   ["" "x" "y"]
@@ -87,12 +89,7 @@
                                           ["map-indexed" ["fn" ["idx" "char"] ["[]" "idx" "char"]]]
                                           ["into" ["{}"]]]],
                         "max-id" ["def" "max-id" ["vec->str" ["[]" "64"]]],
-                        "char->int-map" ["def"
-                                         "char->int-map"
-                                         ["->>"
-                                          ["string/split" "dictionary" "|"]
-                                          ["map-indexed" ["fn" ["idx" "char"] ["[]" "char" "idx"]]]
-                                          ["into" ["{}"]]]],
+                        "char->int-map" ["def" "char->int-map" ["set/map-invert" "int->char-map"]],
                         "str->vec" ["defn"
                                     "str->vec"
                                     ["x"]
