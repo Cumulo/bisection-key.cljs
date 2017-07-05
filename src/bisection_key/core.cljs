@@ -1,6 +1,9 @@
 
 (ns bisection-key.core (:require [clojure.string :as string] [clojure.set :as set]))
 
+(defn trim-right [x]
+  (let [end (dec (count x))] (if (= "+" (subs x end)) (recur (subs x 0 end)) x)))
+
 (def dictionary
   (str "+-/" "0123456789" "ABCDEFGHIJKLMNOPQRSTUVWXYZ" "abcdefghijklmnopqrstuvwxyz"))
 
@@ -14,14 +17,17 @@
 
 (defn bisect-vec [xs ys result]
   (if (and (empty? xs) (empty? ys))
-    (throw (js/Error. "[bisection] lack of information!"))
+    result
     (let [x (or (first xs) 0), y (or (first ys) 0)]
       (cond
         (= x y) (recur (rest xs) (rest ys) (conj result x))
-        (= 1 (- y x)) (conj result x 32)
-        :else (conj result (js/Math.round (bit-shift-right (+ x y) 1)))))))
+        (= 1 (- y x))
+          (let [rest-ys (rest ys)]
+            (recur (rest xs) (cons (or (first rest-ys) 64) (rest rest-ys)) (conj result x)))
+        :else (recur (rest xs) (rest ys) (conj result (bit-shift-right (+ x y) 1)))))))
 
-(defn vec->str [xs] (->> xs (map (fn [x] (get int->char-map x))) (string/join "")))
+(defn vec->str [xs]
+  (->> xs (map (fn [x] (get int->char-map x))) (string/join "") (trim-right)))
 
 (defn bisect [ x y]
   (assert (and (string? x) (string? y)) "[bitsect] arguments should be strings!")
