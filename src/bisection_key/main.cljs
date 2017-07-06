@@ -14,7 +14,11 @@
   (println (bisect "11" "15"))
   (loop [i 0, x mid-id]
     (let [new-id (bisect x max-id)]
-      (println "new:" new-id)
+      (println "max:" new-id)
+      (if (< i 40) (recur (inc i) new-id))))
+  (loop [i 0, x max-id]
+    (let [new-id (bisect min-id x)]
+      (println "min:" new-id)
       (if (< i 40) (recur (inc i) new-id))))
   (loop [i 0, x mid-id]
     (let [yes? (> (js/Math.random) 0.5), new-id (if yes? (bisect x max-id) (bisect min-id x))]
@@ -24,5 +28,3 @@
 (defn main! [] (run-bisection!) (println "App started."))
 
 (defn reload! [] (run-bisection!) (println "Code updated."))
-
-(set! (.-onload js/window) main!)

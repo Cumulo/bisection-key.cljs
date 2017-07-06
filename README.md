@@ -30,7 +30,7 @@ Charset:
 
 ### Workflow
 
-Workflow https://github.com/mvc-works/stack-workflow
+Workflow https://github.com/minimal-xyz/minimal-shadow-cljs-nodejs
 
 ### License
 

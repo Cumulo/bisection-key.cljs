@@ -22,7 +22,13 @@
                                            ["[]" "i" "0" "x" "mid-id"]
                                            ["let"
                                             [["new-id" ["bisect" "x" "max-id"]]]
-                                            ["println" "|new:" "new-id"]
+                                            ["println" "|max:" "new-id"]
+                                            ["if" ["<" "i" "40"] ["recur" ["inc" "i"] "new-id"]]]]
+                                          ["loop"
+                                           ["[]" "i" "0" "x" "max-id"]
+                                           ["let"
+                                            [["new-id" ["bisect" "min-id" "x"]]]
+                                            ["println" "|min:" "new-id"]
                                             ["if" ["<" "i" "40"] ["recur" ["inc" "i"] "new-id"]]]]
                                           ["loop"
                                            ["[]" "i" "0" "x" "mid-id"]
@@ -36,59 +42,7 @@
                                              "x"
                                              "new-id"]
                                             ["if" ["<" "i" "10"] ["recur" ["inc" "i"] "new-id"]]]]]},
-                 :procs [["set!" [".-onload" "js/window"] "main!"]]},
-         "render" {:ns ["ns"
-                        "bisection-key.render"
-                        [":require"
-                         ["[]" "respo.render.html" ":refer" ["[]" "make-string"]]
-                         ["[]" "shell-page.core" ":refer" ["[]" "make-page" "spit" "slurp"]]
-                         ["[]" "bisection-key.schema" ":as" "schema"]]],
-                   :defs {"main!" ["defn"
-                                   "main!"
-                                   []
-                                   ["if"
-                                    ["=" "js/process.env.env" "|dev"]
-                                    ["spit" "|target/index.html" ["dev-page"]]
-                                    ["spit" "|dist/index.html" ["prod-page"]]]],
-                          "base-info" ["def"
-                                       "base-info"
-                                       ["{}"
-                                        [":title" "|Bisection"]
-                                        [":icon" "|http://logo.mvc-works.org/mvc.png"]
-                                        [":ssr" "nil"]
-                                        [":inner-html" "nil"]]],
-                          "dev-page" ["defn"
-                                      "dev-page"
-                                      []
-                                      ["make-page"
-                                       "|"
-                                       ["merge"
-                                        "base-info"
-                                        ["{}"
-                                         [":styles" ["[]"]]
-                                         [":scripts" ["[]" "|/main.js" "|/browser/lib.js" "|/browser/main.js"]]]]]],
-                          "prod-page" ["defn"
-                                       "prod-page"
-                                       []
-                                       ["let"
-                                        [["html-content" "|"]
-                                         ["manifest" [".parse" "js/JSON" ["slurp" "|dist/assets-manifest.json"]]]
-                                         ["cljs-manifest" [".parse" "js/JSON" ["slurp" "|dist/manifest.json"]]]]
-                                        ["make-page"
-                                         "html-content"
-                                         ["merge"
-                                          "base-info"
-                                          ["{}"
-                                           [":styles" ["[]" ["aget" "manifest" "|main.css"]]]
-                                           [":scripts"
-                                            ["[]"
-                                             ["aget" "manifest" "|main.js"]
-                                             ["->" "cljs-manifest" ["aget" "0"] ["aget" "|js-name"]]
-                                             ["->" "cljs-manifest" ["aget" "1"] ["aget" "|js-name"]]]]]]]]]},
-                   :procs []},
-         "schema" {:ns ["ns" "bisection-key.schema"],
-                   :defs {"store" ["def" "store" ["{}" [":states" ["{}"]] [":data" "0"]]]},
-                   :procs []},
+                 :procs []},
          "core" {:ns ["ns"
                       "bisection-key.core"
                       [":require" ["[]" "clojure.string" ":as" "string"] ["[]" "clojure.set" ":as" "set"]]],

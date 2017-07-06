@@ -5,17 +5,8 @@
   "main": "index.js",
   "scripts": {
     "tiye": "rsync -r dist/ repo.tiye.me:repo/mvc-works/stack-workflow/",
-    "release": "shadow-cljs release browser",
-    "watch": "shadow-cljs watch browser",
-    "compile-ssr": "shadow-cljs compile ssr",
-    "html-dev": "env=dev node target/ssr.js",
-    "html": "node target/ssr.js",
-    "hmr": "webpack-dev-server --config webpack.dev.coffee --hot-only",
-    "webpack": "webpack --config webpack.release.coffee --hide-modules --progress",
-    "dev": "yarn compile-ssr && yarn html-dev && yarn hmr",
-    "del": "rm -rf dist/*",
-    "serve": "http-server dist",
-    "build": "yarn del && yarn release && yarn webpack && yarn compile-ssr && yarn html && yarn serve"
+    "compile": "shadow-cljs compile app",
+    "watch": "shadow-cljs watch app"
   },
   "repository": {
     "type": "git",
@@ -24,19 +15,7 @@
   "author": "jiyinyiyong",
   "license": "MIT",
   "devDependencies": {
-    "coffee-script": "^1.12.6",
-    "css-loader": "^0.28.4",
-    "extract-text-webpack-plugin": "^2.1.2",
-    "file-loader": "^0.11.2",
-    "http-server": "^0.10.0",
-    "respo-ui": "^0.1.2",
     "shadow-cljs": "^0.18.0",
-    "source-map-loader": "^0.2.1",
-    "style-loader": "^0.18.2",
-    "uglifyjs-webpack-plugin": "^0.4.4",
-    "url-loader": "^0.5.9",
-    "webpack": "^3.0.0",
-    "webpack-dev-server": "^2.5.0",
-    "webpack-manifest-plugin": "^1.1.0"
+    "source-map-loader": "^0.2.1"
   }
 }
