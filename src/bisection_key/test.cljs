@@ -1,7 +1,8 @@
 
 (ns bisection-key.test
   (:require [cljs.test :refer [deftest is testing run-tests]]
-            [bisection-key.core :refer [max-id min-id mid-id bisect]]))
+            [bisection-key.core :refer [max-id min-id mid-id bisect]]
+            [bisection-key.util :refer [key-before key-after assoc-before assoc-after]]))
 
 (deftest
  test-bisect
@@ -29,6 +30,21 @@
    (loop [i 0, x max-id]
      (let [new-id (bisect min-id x)] (if (<= i 40) (recur (inc i) new-id) x)))
    "++++++/")))
+
+(deftest
+ test-key-before
+ (is (= (key-before {"a" 1, "b" 1} "a") "G"))
+ (is (= (key-before {"a" 1, "b" 1} "b") "aT")))
+
+(deftest
+ test-key-after
+ (is (= (key-after {"a" 1, "b" 1} "a") "aT"))
+ (is (= (key-after {"a" 1, "b" 1} "b") "n")))
+
+(deftest
+ test-assoc
+ (is (= (assoc-before {"a" 1, "b" 1} "a" 2) {"a" 1, "b" 1, "G" 2}))
+ (is (= (assoc-after {"a" 1, "b" 1} "a" 2) {"a" 1, "b" 1, "aT" 2})))
 
 (defn main! [] (run-tests))
 
