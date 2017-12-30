@@ -6,7 +6,8 @@
   "scripts": {
     "tiye": "rsync -r dist/ repo.tiye.me:repo/Cirru/bisection-key/",
     "compile": "shadow-cljs compile app",
-    "watch": "shadow-cljs watch app"
+    "watch": "shadow-cljs watch app",
+    "watch-test": "shadow-cljs watch test"
   },
   "repository": {
     "type": "git",
