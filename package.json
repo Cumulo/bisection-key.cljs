@@ -1,21 +1,23 @@
 {
-  "name": "stack-workflow",
+  "name": "bisection-key",
   "version": "0.1.0",
-  "description": "Stack Workflow",
+  "description": "Bisection key library",
   "main": "index.js",
   "scripts": {
-    "tiye": "rsync -r dist/ repo.tiye.me:repo/mvc-works/stack-workflow/",
+    "tiye": "rsync -r dist/ repo.tiye.me:repo/Cirru/bisection-key/",
     "compile": "shadow-cljs compile app",
     "watch": "shadow-cljs watch app"
   },
   "repository": {
     "type": "git",
-    "url": "git@github.com:mvc-works/stack-workflow.git"
+    "url": "git@github.com:Cirru/bisection-key.git"
   },
   "author": "jiyinyiyong",
   "license": "MIT",
   "devDependencies": {
-    "shadow-cljs": "^0.18.0",
-    "source-map-loader": "^0.2.1"
-  }
+    "shadow-cljs": "2.0.120",
+    "source-map-loader": "^0.2.1",
+    "ws": "^3.3.3"
+  },
+  "dependencies": {}
 }

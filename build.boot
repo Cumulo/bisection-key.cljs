@@ -9,7 +9,7 @@
   (comp
     (pom :project     'cirru/bisection-key
          :version     +version+
-         :description "Workflow"
+         :description "Ordered string key for maps"
          :url         "https://github.com/Cirru/bisection-key"
          :scm         {:url "https://github.com/Cirru/bisection-key"}
          :license     {"MIT" "http://opensource.org/licenses/mit-license.php"})
