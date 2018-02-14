@@ -14,6 +14,12 @@
               assoc-append]]))
 
 (deftest
+ test-append
+ (is (= (key-append {}) mid-id))
+ (is (= (key-append {"a" 1}) "m"))
+ (is (= (assoc-append {"a" 1} 2) {"a" 1, "m" 2})))
+
+(deftest
  test-assoc
  (is (= (assoc-before {"a" 1, "b" 1} "a" 2) {"a" 1, "b" 1, "G" 2}))
  (is (= (assoc-after {"a" 1, "b" 1} "a" 2) {"a" 1, "b" 1, "aT" 2})))
@@ -62,10 +68,10 @@
  (is (= (assoc-prepend {"a" 1} 2) {"a" 1, "G" 2})))
 
 (deftest
- test-append
- (is (= (key-append {}) mid-id))
- (is (= (key-append {"a" 1}) "m"))
- (is (= (assoc-append {"a" 1} 2) {"a" 1, "m" 2})))
+ test-shorten
+ ()
+ (is (= "c" (bisect "a34fd" "f3554")))
+ (is (= "a34N" (bisect "a34fd" "a3554"))))
 
 (defn main! [] (run-tests))
 

@@ -19,4 +19,5 @@
          :scm         {:url "https://github.com/Cirru/bisection-key"}
          :license     {"MIT" "http://opensource.org/licenses/mit-license.php"})
     (jar)
+    (install)
     (push :repo "clojars" :gpg-sign false)))

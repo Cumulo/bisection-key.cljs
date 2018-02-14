@@ -1,6 +1,7 @@
 
 {:source-paths ["src"]
- :dependencies [[mvc-works/hsl          "0.1.2"]]
+ :dependencies []
+ :socket-repl {:port 5900}
  :builds {:app {:target :node-script
                 :output-to "target/main.js"
                 :main bisection-key.main/main!

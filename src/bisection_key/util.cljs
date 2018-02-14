@@ -16,6 +16,16 @@
 (defn assoc-after [dict base-key v]
   (let [new-key (key-after dict base-key)] (assoc dict new-key v)))
 
+(defn key-append [dict]
+  (assert (map? dict) "dict should be a map")
+  (if (empty? dict)
+    mid-id
+    (let [last-key (last (sort (keys dict)))] (bisect last-key max-id))))
+
+(defn assoc-append [dict v]
+  (assert (map? dict) "dict should be a map")
+  (let [k (key-append dict)] (assoc dict k v)))
+
 (defn key-before [dict base-key]
   (assert (string? base-key) "base-key should be string")
   (assert (map? dict) "dict should be a map")
@@ -32,16 +42,6 @@
   (if (empty? dict)
     mid-id
     (let [first-key (first (sort (keys dict)))] (bisect min-id first-key))))
-
-(defn key-append [dict]
-  (assert (map? dict) "dict should be a map")
-  (if (empty? dict)
-    mid-id
-    (let [last-key (last (sort (keys dict)))] (bisect last-key max-id))))
-
-(defn assoc-append [dict v]
-  (assert (map? dict) "dict should be a map")
-  (let [k (key-append dict)] (assoc dict k v)))
 
 (defn assoc-prepend [dict v]
   (assert (map? dict) "dict should be a map")
