@@ -7,15 +7,16 @@ bisection-key
 ### Usage
 
 ```edn
-[cirru/bisection-key "0.1.4"]
+[cirru/bisection-key "0.1.5"]
 ```
 
 [![Clojars Project](https://img.shields.io/clojars/v/cirru/bisection-key.svg)](https://clojars.org/cirru/bisection-key)
 
 ```clojure
+; make sure the first parameter is littler
 (bisection-key.core/bisect "a" "c") ; "b"
 (bisection-key.core/bisect "a" "b") ; "aT"
-; make sure "a < b"
+(bisection-key.core/bisect "a34fd" "f3554") ; "c"
 
 bisection-key.core/min-id ; "+"
 bisection-key.core/mid-id ; "T"
