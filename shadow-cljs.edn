@@ -1,12 +1,15 @@
-
-{:source-paths ["src"]
- :dependencies []
- :socket-repl {:port 5900}
- :builds {:app {:target :node-script
-                :output-to "target/main.js"
-                :main bisection-key.main/main!
-                :devtools {:after-load bisection-key.main/reload!}}
-          :test {:target :node-script
-                 :output-to "target/test.js"
-                 :main bisection-key.test/main!
-                 :devtools {:after-load bisection-key.test/reload!}}}}
+{
+  :source-paths ["src"]
+  :dependencies []
+  :socket-repl {:port 5900}
+  :builds {
+    :app {
+      :target :node-script, :output-to "target/main.js", :main bisection-key.main/main!
+      :devtools {:after-load bisection-key.main/reload!}
+    }
+    :test {
+      :target :node-script, :output-to "target/test.js", :main bisection-key.test/main!
+      :devtools {:after-load bisection-key.test/reload!}
+    }
+  }
+}
