@@ -1,0 +1,27 @@
+
+name: Deploy package
+
+on:
+  release:
+    types: [created]
+
+jobs:
+  deploy:
+    name: Deploy
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - run: curl -O https://download.clojure.org/install/linux-install-1.10.1.507.sh && chmod +x linux-install-1.10.1.507.sh && sudo ./linux-install-1.10.1.507.sh
+
+      - uses: actions/checkout@v2
+
+      - run: yarn
+
+      - name: run tests
+        run: yarn shadow-cljs compile test && node target/test.js
+
+      - run: echo Working on ${{ github.ref }}
+
+      - name: deploy to clojars
+        run: env CLOJARS_USERNAME=jiyinyiyong CLOJARS_PASSWORD=${{ secrets.CLOJARS_PASSWORD }} clojure -A:release
