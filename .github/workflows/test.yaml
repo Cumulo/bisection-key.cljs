@@ -8,7 +8,7 @@ on:
       - master
 
 jobs:
-  upload-assets:
+  test:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
