@@ -46,3 +46,7 @@
 (defn assoc-prepend [dict v]
   (assert (map? dict) "dict should be a map")
   (let [k (key-prepend dict)] (assoc dict k v)))
+
+(defn get-max-key [x] (apply max (keys x)))
+
+(defn get-min-key [x] (apply min (keys x)))

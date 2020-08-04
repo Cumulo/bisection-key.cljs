@@ -11,7 +11,9 @@
               key-prepend
               key-append
               assoc-prepend
-              assoc-append]]))
+              assoc-append
+              get-min-key
+              get-max-key]]))
 
 (deftest
  test-append
@@ -50,6 +52,12 @@
    (loop [i 0, x max-id]
      (let [new-id (bisect min-id x)] (if (<= i 40) (recur (inc i) new-id) x)))
    "++++++/")))
+
+(deftest
+ test-get-key
+ (testing "get min key" (is (= "a" (get-min-key {"a" 1, "b" 2}))))
+ (testing "get max key" (is (= "b" (get-max-key {"a" 1, "b" 2}))))
+ (testing "get nil" (is (= nil (get-min-key {}))) (is (= nil (get-max-key {})))))
 
 (deftest
  test-key-after

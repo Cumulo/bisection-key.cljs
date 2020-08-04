@@ -7,7 +7,7 @@ bisection-key
 ### Usage
 
 ```edn
-[cirru/bisection-key "0.1.5"]
+[cirru/bisection-key "0.1.6-a1"]
 ```
 
 [![Clojars Project](https://img.shields.io/clojars/v/cirru/bisection-key.svg)](https://clojars.org/cirru/bisection-key)
@@ -32,6 +32,9 @@ bisection-key.core/max-id ; "z"
 (bisection-key.util/assoc-before v "b" 2) ; (assoc v "aT" 2)
 (bisection-key.util/assoc-prepend v 2) ; (assoc v "G" 2)
 (bisection-key.util/assoc-append v 2) ; (assoc v "n" 2)
+
+(bisection-key.util/get-min-key v) ; "a"
+(bisection-key.util/get-max-key v) ; "b"
 ```
 
 Charset:
