@@ -13,7 +13,12 @@
               assoc-prepend
               assoc-append
               get-min-key
-              get-max-key]]))
+              get-max-key
+              key-nth
+              val-nth
+              assoc-nth
+              assoc-before-nth
+              assoc-after-nth]]))
 
 (deftest
  test-append
@@ -80,6 +85,25 @@
  ()
  (is (= "c" (bisect "a34fd" "f3554")))
  (is (= "a34N" (bisect "a34fd" "a3554"))))
+
+(deftest
+ testing-nth-ops
+ (let [v {"a" 1, "b" 2, "c" 3}]
+   (testing
+    "get key at nth"
+    (is (= "a" (key-nth v 0)))
+    (is (= "b" (key-nth v 1)))
+    (is (= "c" (key-nth v 2)))
+    (is (= nil (key-nth v 3))))
+   (testing
+    "get val at nth"
+    (is (= 1 (val-nth v 0)))
+    (is (= 2 (val-nth v 1)))
+    (is (= 3 (val-nth v 2)))
+    (is (= nil (val-nth v 3))))
+   (testing "set value at nth" (is (= (assoc v "a" 4) (assoc-nth v 0 4))))
+   (testing "set value before nth" (is (= (assoc v "aT" 4) (assoc-before-nth v 1 4))))
+   (testing "set value after nth" (is (= (assoc v "bT" 4) (assoc-after-nth v 1 4))))))
 
 (defn main! [] (run-tests))
 
