@@ -16,6 +16,14 @@
 (defn assoc-after [dict base-key v]
   (let [new-key (key-after dict base-key)] (assoc dict new-key v)))
 
+(defn has-nth? [x n] (< n (count x)))
+
+(defn key-nth [x n] (if (has-nth? x n) (nth (sort (keys x)) n) nil))
+
+(defn assoc-after-nth [x n v]
+  (when-not (has-nth? x n) (throw (js/Error. "Succeeded map size")))
+  (let [k (key-nth x n)] (assoc-after x k v)))
+
 (defn key-append [dict]
   (assert (map? dict) "dict should be a map")
   (if (empty? dict)
@@ -37,6 +45,14 @@
 (defn assoc-before [dict base-key v]
   (let [new-key (key-before dict base-key)] (assoc dict new-key v)))
 
+(defn assoc-before-nth [x n v]
+  (when-not (has-nth? x n) (throw (js/Error. "Succeeded map size")))
+  (let [k (key-nth x n)] (assoc-before x k v)))
+
+(defn assoc-nth [x n v]
+  (when-not (has-nth? x n) (throw (js/Error. "Succeeded map size")))
+  (let [k (key-nth x n)] (assoc x k v)))
+
 (defn key-prepend [dict]
   (assert (map? dict) "dict should be a map")
   (if (empty? dict)
@@ -50,3 +66,6 @@
 (defn get-max-key [x] (apply max (keys x)))
 
 (defn get-min-key [x] (apply min (keys x)))
+
+(defn val-nth [x n]
+  (if (has-nth? x n) (get x (key-nth x n)) (do (js/console.warn "exceeded map size") nil)))
