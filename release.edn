@@ -1,6 +1,7 @@
-{:version "0.1.6-a2"
- :group-id "cirru"
- :artifact-id "bisection-key"
- :skip-tag true
- :description "Ordered string key for maps"
+{:version "0.1.6",
+ :group-id "cirru",
+ :artifact-id "bisection-key",
+ :skip-tag true,
+ :description "Ordered string key for maps",
  :scm-url "https://github.com/Cirru/bisection-key"}
+
